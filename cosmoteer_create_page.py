@@ -137,7 +137,7 @@ class dataformat():
         with open(template_name) as f:
             tmpl = Template(f.read(), variable_start_string='((', variable_end_string='))')
         
-        with open(f'{self.name}wikitext.txt', "w") as f:
+        with open(f'wikitext/{self.name}wikitext.txt', "w") as f:
             file_data = tmpl.render(self.data)
             f.write(file_data)
 
@@ -216,15 +216,14 @@ class dataformat():
 if __name__ == "__main__":
 
     #fill these in before creating new ship documents
-    faction_long = "Cabal of Sol"
     extension = ".webp" #sometimes it's .png, make sure to check the wiki images
 
-    ship_dict = {}
+    ship_dict = dict()
 
     #Process rules file
-    for file in os.listdir():
+    for file in os.listdir("png"):
         if ".rules" in file:
-            with open(file, "r") as f:
+            with open(f'png/{file}', "r") as f:
                 #get rules file, split into lines for processing. Trade/Crew transport lines can be ignored as each ship comes with a tag
                 rule_info = f.readlines()
 
@@ -243,10 +242,10 @@ if __name__ == "__main__":
                         name = ship[1].replace('File="', "").replace('.ship.png";', "")
                         tier = ship[2].replace("Tier=", "").replace(";", "")
                         difficulty = "None"
-                        if classification != "Trade":
+                        if classification != "Trade ship" and classification != "Crew Transports":
                             difficulty = ship[3].replace("Difficulty=", "").replace(";", "")
                         ship_dict[name] = [tier, classification, difficulty]
-                    elif len(ship) > 0:
+                    elif len(ship) > 1:
                         classification = i.replace("//", "").strip().removesuffix("s")
 
     
