@@ -1,0 +1,37 @@
+{{Ship infobox
+|title1={{set ship title}}
+|image1=((shipfile))
+|image2=((shipfileinterior))
+|image3=((shipfileblueprint))
+|faction=((faction))
+
+|type=((type))
+|classification=((class))
+|tier=((tier))
+|value=((cost))
+|mass=((mass))
+|hyperdrive_efficiency_percentage=((efficiency))
+|crew=((crew))
+|suggested_crew=((crew_suggest))
+|power_used=((power))
+|suggested_power=((power_suggested))
+|designed_by={{Ship designers
+|{{Ship designer|((author))}}
+}}
+|command_points_used=((command_used))
+|command_points_total=((command_total))
+}}
+{{Breadcrumbs|page 1=Category:Ships|page 2=Category: Ships|page 3=Category:((faction)) ((type)) Ships|remove category name=true}}
+{{Stub}}
+{{Quote|((quote))}}
+
+'''Acolyte''' is a tier ((tier)) ((type)) trade ship used by the [[((faction))]].
+
+
+{{((faction)) Ship Navbox}}
+[[Category:((faction))]]
+[[Category:Ships]]
+[[Category:((type)) Ships]]
+[[Category:((faction)) Ships]]
+[[Category:((faction)) ((type)) Ships]]
+[[Category:Ships by ((author))]]

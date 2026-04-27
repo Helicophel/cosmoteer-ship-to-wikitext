@@ -1,0 +1,37 @@
+{{Ship infobox
+|title1={{set ship title}}
+|image1=ShipCabalCivilianAdvocate.webp
+|image2=ShipCabalCivilianAdvocateInterior.webp
+|image3=ShipCabalCivilianAdvocateBlueprint.webp
+|faction=Cabal of Sol
+
+|type=Civilian
+|classification=Trade
+|tier=None
+|value=None
+|mass=None
+|hyperdrive_efficiency_percentage=None
+|crew=None
+|suggested_crew=None
+|power_used=None
+|suggested_power=None
+|designed_by={{Ship designers
+|{{Ship designer|Saris}}
+}}
+|command_points_used=None
+|command_points_total=None
+}}
+{{Breadcrumbs|page 1=Category:Ships|page 2=Category: Ships|page 3=Category:Cabal of Sol Civilian Ships|remove category name=true}}
+{{Stub}}
+{{Quote|None}}
+
+'''Acolyte''' is a tier None Civilian trade ship used by the [[Cabal of Sol]].
+
+
+{{Cabal of Sol Ship Navbox}}
+[[Category:Cabal of Sol]]
+[[Category:Ships]]
+[[Category:Civilian Ships]]
+[[Category:Cabal of Sol Ships]]
+[[Category:Cabal of Sol Civilian Ships]]
+[[Category:Ships by Saris]]
