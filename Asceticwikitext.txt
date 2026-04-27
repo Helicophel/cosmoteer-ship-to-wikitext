@@ -6,26 +6,26 @@
 |faction=Cabal of Sol
 
 |type=Civilian
-|classification=Trade
+|classification=Trade ship
 |tier=7
-|value=None
-|mass=None
+|value=228000
+|mass=958.40
 |hyperdrive_efficiency_percentage=None
-|crew=0
+|crew=16
 |suggested_crew=None
-|power_used=None
+|power_used=1.5
 |suggested_power=None
 |designed_by={{Ship designers
 |{{Ship designer|Vilda}}
 }}
-|command_points_used=None
-|command_points_total=None
+|command_points_used=40
+|command_points_total=50
 }}
 {{Breadcrumbs|page 1=Category:Ships|page 2=Category: Ships|page 3=Category:Cabal of Sol Civilian Ships|remove category name=true}}
 {{Stub}}
 
 
-'''Ascetic''' is a tier 7 Civilian trade ship used by the [[Cabal of Sol]].
+'''Ascetic''' is a tier 7 Civilian Trade ship used by the [[Cabal of Sol]].
 
 
 {{Cabal of Sol Ship Navbox}}

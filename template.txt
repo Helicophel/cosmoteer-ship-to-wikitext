@@ -25,7 +25,7 @@
 {{Stub}}
 ((description))
 
-'''((name))''' is a tier ((tier)) ((type)) trade ship used by the [[((faction))]].
+'''((name))''' is a tier ((tier)) ((type)) ((class)) used by the [[((faction))]].
 
 
 {{((faction)) Ship Navbox}}
