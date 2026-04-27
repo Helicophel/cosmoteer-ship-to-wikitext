@@ -11,7 +11,7 @@
 |value=None
 |mass=None
 |hyperdrive_efficiency_percentage=None
-|crew=None
+|crew=0
 |suggested_crew=None
 |power_used=None
 |suggested_power=None
@@ -23,9 +23,11 @@
 }}
 {{Breadcrumbs|page 1=Category:Ships|page 2=Category: Ships|page 3=Category:Cabal of Sol Civilian Ships|remove category name=true}}
 {{Stub}}
-{{Quote|None}}
+{{Quote|"The solution to this problem was to house beautiful planetarium-cathedrals in the container spheres, each unique in its design. This came with the benefit that since the cargo spheres were modular, they could be exchanged and shared, for more to delight and joy to be celebrated in each one's gorgeous visage."
+
+		- Excerpt from a Cabal history textbible}}
 
-'''Acolyte''' is a tier None Civilian trade ship used by the [[Cabal of Sol]].
+'''Advocate''' is a tier None Civilian trade ship used by the [[Cabal of Sol]].
 
 
 {{Cabal of Sol Ship Navbox}}

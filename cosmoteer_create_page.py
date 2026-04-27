@@ -4,12 +4,12 @@ import json
 
 class dataformat():
     
-    def __init__(self, name, faction="None", type="None"):
-        self.name = name
+    def __init__(self):
         self.data = {
-            "shipfile": f'Ship{faction}{type}{name}.webp',
-            "shipfileinterior": f'Ship{faction}{type}{name}Interior.webp',
-            "shipfileblueprint": f'Ship{faction}{type}{name}Blueprint.webp',
+            "shipfile": "None",
+            "shipfileinterior": "None",
+            "shipfileblueprint": "None",
+            "name": "None",
             "author": "None",
             "faction": "None",
             "class": "None",
@@ -24,7 +24,7 @@ class dataformat():
             "power_suggested": "None",
             "command_used": "None",
             "command_total": "None",
-            "quote": "None"
+            "description": "None"
         }
 
     def write_to_template(self, template_name):
@@ -48,17 +48,31 @@ class dataformat():
         self.data['class'] = ship_class
 
     def set_crew(self, part_data):
-        sum = 0
+        sum = 2*part_data.count("cosmoteer.crew_quarters_small") + 6*part_data.count("cosmoteer.crew_quarters_med") + 24*part_data.count("cosmoteer.crew_quarters_large")
         self.data['crew'] = sum
+
+    def set_description(self, description_data):
+        self.data['description'] = description_data
+
+    def set_filenames(self, name, faction, type, extension):
+        self.name = name
+        self.faction = faction
+        self.data["name"] = name
+        self.data["type"] = type
+        self.data["faction"] = faction
+        self.data["shipfile"] = f'Ship{faction}{type}{name}{extension}'
+        self.data["shipfileinterior"] = f'Ship{faction}{type}{name}Interior{extension}'
+        self.data["shipfileblueprint"] = f'Ship{faction}{type}{name}Blueprint{extension}'
 
 
 if __name__ == "__main__":
 
-    #fill these in before creating new ships
-    faction_long = ""
-    faction_short = ""
-    type = ""
-    classification = ""
+    #fill these in before creating new ship documents
+    faction_long = "Cabal of Sol"
+    faction_short = "Cabal"
+    type = "Civilian"
+    classification = "Trade"
+    extension = ".webp" #sometimes it's .png, make sure to check the wiki imageS
 
     #template name
     template_name = "template.txt"
@@ -80,16 +94,18 @@ if __name__ == "__main__":
             name = json_file.split(".")[0]
 
             #create dataformat class of ship
-            ship = dataformat(name, faction_short, type)
+            ship = dataformat()
 
             #set values associated with parts 
-            #incomplete
-            #ship.set_crew(part_data)
+            ship.set_crew(part_data)
 
-            #set other values
+            #set other values. Filenames first
+            ship.set_filenames(name, faction_short, type, extension)
             ship.set_faction(faction_long)
             ship.set_author(ship_data["Author"])
+            ship.set_description(ship_data["Description"])
             ship.set_class(classification)
+
 
             #write to template files
             ship.write_to_template(template_name)
