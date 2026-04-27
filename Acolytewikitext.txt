@@ -7,7 +7,7 @@
 
 |type=Civilian
 |classification=Trade
-|tier=None
+|tier=7
 |value=None
 |mass=None
 |hyperdrive_efficiency_percentage=None
@@ -23,12 +23,11 @@
 }}
 {{Breadcrumbs|page 1=Category:Ships|page 2=Category: Ships|page 3=Category:Cabal of Sol Civilian Ships|remove category name=true}}
 {{Stub}}
-{{Quote|"Freighters are known to carry resources over months of travel, toiling humbly and bringing resources to where they're needed. Naturally this results in retaining crew for sometimes years at a time, but unfortunately renders sermons inaccessible outside of Cabal space."
+{{Quote|{"Freighters are known to carry resources over months of travel, toiling humbly and bringing resources to where they're needed. Naturally this results in retaining crew for sometimes years at a time, but unfortunately renders sermons inaccessible outside of Cabal space."
+
+		- Excerpt from a Cabal history textbible}}}
 
-
-		- Excerpt from a Cabal history textbible}}
-
-'''Acolyte''' is a tier None Civilian trade [[ships|ship]] used by the [[Cabal of Sol]].
+'''Acolyte''' is a tier 7 Civilian trade ship used by the [[Cabal of Sol]].
 
 
 {{Cabal of Sol Ship Navbox}}

@@ -7,7 +7,7 @@
 
 |type=Civilian
 |classification=Trade
-|tier=None
+|tier=7
 |value=None
 |mass=None
 |hyperdrive_efficiency_percentage=None
@@ -23,9 +23,9 @@
 }}
 {{Breadcrumbs|page 1=Category:Ships|page 2=Category: Ships|page 3=Category:Cabal of Sol Civilian Ships|remove category name=true}}
 {{Stub}}
-{{Quote|}}
 
-'''Ascetic''' is a tier None Civilian trade ship used by the [[Cabal of Sol]].
+
+'''Ascetic''' is a tier 7 Civilian trade ship used by the [[Cabal of Sol]].
 
 
 {{Cabal of Sol Ship Navbox}}

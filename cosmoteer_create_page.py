@@ -52,7 +52,11 @@ class dataformat():
         self.data['crew'] = sum
 
     def set_description(self, description_data):
-        self.data['description'] = description_data
+        #done this way since some ships lack descriptions
+        if description_data:
+            self.data['description'] = "{{Quote|{" + description_data + "}}}"
+        else:
+            self.data['description'] = ""
 
     def set_filenames(self, name, faction, type, extension):
         self.name = name
@@ -64,15 +68,40 @@ class dataformat():
         self.data["shipfileinterior"] = f'Ship{faction}{type}{name}Interior{extension}'
         self.data["shipfileblueprint"] = f'Ship{faction}{type}{name}Blueprint{extension}'
 
+    def set_tier(self, tier):
+        self.data["tier"] = tier
 
 if __name__ == "__main__":
 
     #fill these in before creating new ship documents
     faction_long = "Cabal of Sol"
-    faction_short = "Cabal"
-    type = "Civilian"
-    classification = "Trade"
-    extension = ".webp" #sometimes it's .png, make sure to check the wiki imageS
+    extension = ".webp" #sometimes it's .png, make sure to check the wiki images
+
+    ship_dict = {}
+
+    #Process rules file
+    for file in os.listdir():
+        if ".rules" in file:
+            with open(file, "r") as f:
+                #get rules file, split into lines for processing. Trade/Crew transport lines can be ignored as each ship comes with a tag
+                rule_info = f.readlines()
+
+                faction_rule = rule_info[0]
+                faction_short = (faction_rule.replace("Faction = ", "")).capitalize().strip("\n")
+
+                type_rule = rule_info[1]
+                type = ((type_rule.replace("Tags = [", "")).replace("]", "")).capitalize().strip("\n")
+
+                for i in rule_info[6:]:
+                    ship = i.split()
+                    
+                    if len(ship) >= 8:
+                        print(ship)
+                        name = ship[1].replace('File="', "").replace('.ship.png";', "")
+                        tier = ship[2].replace("Tier=", "").replace(";", "")
+                        classification = ship[6].replace("[", "").replace(",", "").replace("]", "").capitalize()
+                        print(name, tier, classification)
+                        ship_dict[name] = [tier, classification]
 
     #template name
     template_name = "template.txt"
@@ -92,9 +121,13 @@ if __name__ == "__main__":
 
             #get ship name from filename
             name = json_file.split(".")[0]
+            print(name)
 
             #create dataformat class of ship
             ship = dataformat()
+
+            #get classification and tier
+            tier, classification = ship_dict[name]
 
             #set values associated with parts 
             ship.set_crew(part_data)
@@ -105,6 +138,7 @@ if __name__ == "__main__":
             ship.set_author(ship_data["Author"])
             ship.set_description(ship_data["Description"])
             ship.set_class(classification)
+            ship.set_tier(tier)
 
 
             #write to template files
