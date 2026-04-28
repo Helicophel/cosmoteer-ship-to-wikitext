@@ -224,19 +224,19 @@ if __name__ == "__main__":
     for file in os.listdir("png"):
         if ".rules" in file:
             with open(f'png/{file}', "r") as f:
-                #get rules file, split into lines for processing. Trade/Crew transport lines can be ignored as each ship comes with a tag
+                #get rules file, split into lines for processing
                 rule_info = f.readlines()
-
                 faction_rule = rule_info[0]
                 faction_short = (faction_rule.replace("Faction = ", "")).capitalize().strip("\n")
 
                 type_rule = rule_info[1]
                 type = ((type_rule.replace("Tags = [", "")).replace("]", "")).capitalize().strip("\n")
                 classification = rule_info[5].replace("//", "").strip().removesuffix("s")
-                for i in rule_info[6:]:
+                for i in rule_info[3:]:
                     ship = i.split()
+                    print(ship)
                     
-                    if len(ship) >= 8:
+                    if len(ship) >= 6:
                         #this parses individual lines, extracting name and tier. If a line isn't empty, it's the classification line
                         #Also ignores secondary tags, they aren't used by the wiki
                         name = ship[1].replace('File="', "").replace('.ship.png";', "")
@@ -245,8 +245,8 @@ if __name__ == "__main__":
                         if classification != "Trade ship" and classification != "Crew Transports":
                             difficulty = ship[3].replace("Difficulty=", "").replace(";", "")
                         ship_dict[name] = [tier, classification, difficulty]
-                    elif len(ship) > 1:
-                        classification = i.replace("//", "").strip().removesuffix("s")
+                    elif len(ship) == 2:
+                        classification = ship[1].strip().removesuffix("s")
 
     
     if faction_short == "Io":
