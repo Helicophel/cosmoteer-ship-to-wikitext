@@ -217,8 +217,11 @@ if __name__ == "__main__":
 
     #fill these in before creating new ship documents
     extension = ".webp" #sometimes it's .png, make sure to check the wiki images
-
+    faction_short = ""
     ship_dict = dict()
+
+    if len(os.listdir("png")) == 0:
+        raise FileNotFoundError("No files in /png folder to process")
 
     #Process rules file
     for file in os.listdir("png"):
@@ -233,8 +236,8 @@ if __name__ == "__main__":
                 type = ((type_rule.replace("Tags = [", "")).replace("]", "")).capitalize().strip("\n")
                 classification = rule_info[5].replace("//", "").strip().removesuffix("s")
                 for i in rule_info[3:]:
+                    print(i) 
                     ship = i.split()
-                    print(ship)
                     
                     if len(ship) >= 6:
                         #this parses individual lines, extracting name and tier. If a line isn't empty, it's the classification line
@@ -247,6 +250,8 @@ if __name__ == "__main__":
                         ship_dict[name] = [tier, classification, difficulty]
                     elif len(ship) == 2:
                         classification = ship[1].strip().removesuffix("s")
+        else: 
+            raise FileNotFoundError(".rules file not found in /png")
 
     
     if faction_short == "Io":
