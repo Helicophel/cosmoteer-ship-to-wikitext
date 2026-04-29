@@ -101,6 +101,20 @@ PART_DATA = {
     "cosmoteer.corridor": {"command": 0, "cost": 100, "mass": 1.0, },
     "cosmoteer.door": {"command":0, "cost":100, "mass": 0},
 }
+
+SHIP_TYPES = {
+    "Scouts": "Scout",
+    "Patrolships": "Patrol Ship",
+    "Corvettes": "Corvette",
+    "Frigates": "Frigate",
+    "Destroyers": "Destroyer",
+    "Cruisers": "Cruiser",
+    "Battleships": "Battleship",
+    "Battlecruisers": "Battlecruiser",
+    "Flagships": "Flagship",
+    "Tradeships": "Trade Ship",
+    "Crewtransports": "Crew Transport"
+}
 class dataformat():
     
     def __init__(self):
@@ -137,7 +151,7 @@ class dataformat():
         with open(template_name) as f:
             tmpl = Template(f.read(), variable_start_string='((', variable_end_string='))')
         
-        with open(f'wikitext/{self.name}wikitext.txt', "w") as f:
+        with open(f'wikitext/{self.name}wikitext.txt', "w", encoding="utf-8") as f:
             file_data = tmpl.render(self.data)
             f.write(file_data)
 
@@ -209,16 +223,49 @@ class dataformat():
         self.data["cost"] = round(self.cost)
         self.data["mass"] = "{:.2f}".format(self.mass)
         self.data["crew"] = round(self.crew)
-            
+
+def process_rules():
+
+    with open(f'png/{file}', "r") as f:
+        #get rules file, split into lines for processing
+        ship_dict = dict()
+        rule_info = f.readlines()
+        faction_short = (rule_info[0].replace("Faction = ", "")).capitalize().strip("\n")
+        type_rule = rule_info[1]
+        type = type_rule.strip("[]").capitalize().strip("\n")
+
+        for i in rule_info[3:]:
+            ship = i.replace("//", "").replace("\n", "").replace(":~/Tags", "=").replace(":~", "").replace(";", ",").replace(" ", "").replace("{", "").replace("}", "").replace("[", '"').replace("]", '"').replace("\t", "").replace('""', '"')
+            if ship in SHIP_TYPES:
+                classification = SHIP_TYPES[ship]
+            elif len(ship) > 1 and ship != "Ships":
+                ship_stats = eval(f"dict({ship})")
+                ship_name = ship_stats["File"].replace(".ship.png", "")
+                if "Difficulty" in ship_stats:
+                    difficulty = ship_stats["Difficulty"]
+                ship_dict[ship_name] = (ship_stats["Tier"], classification, difficulty) 
+
+    return faction_short, type, ship_dict
         
-            
+
+
+def decide_faction_name(faction_short):
+    if faction_short == "Io":
+        return "Great House Io"
+    elif faction_short == "Cabal":
+        return "Cabal of Sol"
+    else:
+        return faction_short
+
 
 if __name__ == "__main__":
 
     #fill these in before creating new ship documents
     extension = ".webp" #sometimes it's .png, make sure to check the wiki images
     faction_short = ""
-    ship_dict = dict()
+    faction_long = ""
+    
+    rules_found = False
 
     if len(os.listdir("png")) == 0:
         raise FileNotFoundError("No files in /png folder to process")
@@ -226,40 +273,13 @@ if __name__ == "__main__":
     #Process rules file
     for file in os.listdir("png"):
         if ".rules" in file:
-            with open(f'png/{file}', "r") as f:
-                #get rules file, split into lines for processing
-                rule_info = f.readlines()
-                faction_rule = rule_info[0]
-                faction_short = (faction_rule.replace("Faction = ", "")).capitalize().strip("\n")
-
-                type_rule = rule_info[1]
-                type = ((type_rule.replace("Tags = [", "")).replace("]", "")).capitalize().strip("\n")
-                classification = rule_info[5].replace("//", "").strip().removesuffix("s")
-                for i in rule_info[3:]:
-                    print(i) 
-                    ship = i.split()
-                    
-                    if len(ship) >= 6:
-                        #this parses individual lines, extracting name and tier. If a line isn't empty, it's the classification line
-                        #Also ignores secondary tags, they aren't used by the wiki
-                        name = ship[1].replace('File="', "").replace('.ship.png";', "")
-                        tier = ship[2].replace("Tier=", "").replace(";", "")
-                        difficulty = "None"
-                        if classification != "Trade ship" and classification != "Crew Transports":
-                            difficulty = ship[3].replace("Difficulty=", "").replace(";", "")
-                        ship_dict[name] = [tier, classification, difficulty]
-                    elif len(ship) == 2:
-                        classification = ship[1].strip().removesuffix("s")
-        else: 
-            raise FileNotFoundError(".rules file not found in /png")
-
+            faction_short, type, ship_dict = process_rules()
+            rules_found = True
     
-    if faction_short == "Io":
-        faction_long = "Great House Io"
-    elif faction_short == "Cabal":
-        faction_long = "Cabal of Sol"
-    else:
-        faction_long = faction_short
+    if rules_found == False:
+        raise FileNotFoundError(".rules file not found in /png")
+
+    faction_long = decide_faction_name(faction_short)
     #template name
     template_name = "template.txt"
     
@@ -293,8 +313,9 @@ if __name__ == "__main__":
             ship.set_faction(faction_long)
             ship.set_author(ship_data["Author"])
             ship.set_description(ship_data["Description"])
-            ship.set_class(classification)
+
             ship.set_tier(tier)
+            ship.set_class(classification)
             ship.set_difficulty(difficulty)
 
 
