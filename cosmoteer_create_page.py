@@ -49,15 +49,15 @@ PART_DATA = {
     "cosmoteer.structure_1x2_wedge": {"command": 0, "cost": 50, "mass": 0.33, },
     "cosmoteer.structure_1x3_wedge": {"command": 0, "cost": 75, "mass": 0.5, },
     "cosmoteer.structure_tri": {"command": 0, "cost": 25, "mass": 0.08, },
-    "cosmoteer.roof_headlight": {"command": 0, "cost": 200, "mass": 1.0, },
+    "cosmoteer.roof_headlight": {"command": 0, "cost": 300, "mass": 1.0, },
     "cosmoteer.roof_light": {"command": 0, "cost": 200, "mass": 1.0, },
    
-    "cosmoteer.chaingun_magazine": {"command": 0, "cost": 1000, "mass": 2.0, },
     "cosmoteer.cannon_med": {"command": -2, "cost": 2000, "mass": 4.44, },
     "cosmoteer.cannon_large": {"command": -4, "cost": 5000, "mass": 12.29, },
     "cosmoteer.cannon_deck": {"command": -8, "cost": 20000, "mass": 27.07, },
     "cosmoteer.chaingun": {"command": -6, "cost": 24000, "mass": 39.79, },
-    "cosmoteer.flak_cannon_large": {"command": -6, "cost": 12000, "mass": 16.77, },
+    "cosmoteer.chaingun_magazine": {"command": 0, "cost": 1000, "mass": 2.0, },
+    "cosmoteer.flak_cannon_large": {"command": -6, "cost": 14000, "mass": 16.77, },
     "cosmoteer.factory_ammo": {"command": -1, "cost": 4000, "mass": 4.0, },
 
     "cosmoteer.crew_quarters_small": {"command": 0, "cost": 1600, "mass": 2.0, },
@@ -98,7 +98,6 @@ PART_DATA = {
     "cosmoteer.factory_he": {"command": -1, "cost": 15000, "mass": 9.0, },
     "cosmoteer.factory_emp": {"command": -1, "cost": 20000, "mass": 12.0, },
     "cosmoteer.factory_thermal": {"command": -1, "cost": 18000, "mass": 9.0, },
-    "cosmoteer.factory_uranium": {"command": -1, "cost": 90000, "mass": 12.0, },
     "cosmoteer.factory_nuke": {"command": -1, "cost": 25000, "mass": 16.0, },
     "cosmoteer.factory_mine": {"command": -1, "cost": 20000, "mass": 12.0, },
     
@@ -108,6 +107,7 @@ PART_DATA = {
     "cosmoteer.factory_steel": {"command": -1, "cost": 30000, "mass": 16.0, },
     "cosmoteer.factory_coil2": {"command": -1, "cost": 50000, "mass": 12.0, },
     "cosmoteer.factory_coil": {"command": -1, "cost": 30000, "mass": 9.0, },
+    "cosmoteer.factory_uranium": {"command": -1, "cost": 90000, "mass": 12.0, },
     
     "cosmoteer.storage_2x2": {"command": 0, "cost": 1200, "mass": 4.0, },
     "cosmoteer.storage_3x2": {"command": 0, "cost": 1800, "mass": 6.0, },
