@@ -231,8 +231,7 @@ def process_rules():
         ship_dict = dict()
         rule_info = f.readlines()
         faction_short = (rule_info[0].replace("Faction = ", "")).capitalize().strip("\n")
-        type_rule = rule_info[1]
-        type = type_rule.strip("[]").capitalize().strip("\n")
+        type = rule_info[1].replace("Tags = ", "").strip("\n").strip("[]").capitalize()
 
         for i in rule_info[3:]:
             ship = i.replace("//", "").replace("\n", "").replace(":~/Tags", "=").replace(":~", "").replace(";", ",").replace(" ", "").replace("{", "").replace("}", "").replace("[", '"').replace("]", '"').replace("\t", "").replace('""', '"')
