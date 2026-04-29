@@ -165,7 +165,7 @@ class dataformat():
         with open(template_name) as f:
             tmpl = Template(f.read(), variable_start_string='((', variable_end_string='))')
         
-        with open(f'wikitext/{self.name}wikitext.txt', "w", encoding="utf-8") as f:
+        with open(f'wikitext/{self.name}.txt', "w", encoding="utf-8") as f:
             file_data = tmpl.render(self.data)
             f.write(file_data)
 
@@ -204,7 +204,8 @@ class dataformat():
     def set_difficulty(self, difficulty):
         self.data["difficulty"] = difficulty
 
-    def ship_sum_parts(self, part_data):
+    def ship_sum_parts(self, part_data, door_cost):
+        self.cost += door_cost
         for i in part_data:
             part = i["ID"]
             if part in PART_DATA:
@@ -269,7 +270,10 @@ def decide_faction_name(faction_short):
         return "Cabal of Sol"
     else:
         return faction_short
-
+    
+def get_door_cost(ship_data):
+    cost = 100*len(ship_data["Doors"])
+    return cost
 
 if __name__ == "__main__":
 
@@ -319,7 +323,8 @@ if __name__ == "__main__":
             tier, classification, difficulty = ship_dict[name]
 
             #set values associated with parts 
-            ship.ship_sum_parts(part_data)
+            door_cost = get_door_cost(ship_data)
+            ship.ship_sum_parts(part_data, door_cost)
 
             #set other values. Filenames first
             ship.set_filenames(name, faction_short, type, extension)
