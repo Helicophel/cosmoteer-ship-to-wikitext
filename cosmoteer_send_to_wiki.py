@@ -16,8 +16,7 @@ for file in os.listdir("wikitext"):
             content = f.read()
             site.save(page, content, summary)
             print(f'uploaded page {title}')
-            time.sleep(10)
+            time.sleep(1)
+            #to avoid rate limits, 60/60. Default rate limit is 90/60, but this is to be safe
         else:
             print(f"skipped page {title}")
-    #to avoid rate limits, arbritary timing
-    
