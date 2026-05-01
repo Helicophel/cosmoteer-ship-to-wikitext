@@ -33,7 +33,7 @@ class Ship:
         self.image_path = image_path
 
         # read image, base64 image or url
-        input_type = check_input_type(image_path)
+        input_type = check_input_type(image_path.replace(" ", ""))
         # print(input_type)
         if input_type == "base64":
             self.image = Image.open(BytesIO(base64.b64decode(image_path)))  # read base64 string
