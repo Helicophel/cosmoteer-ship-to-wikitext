@@ -2,6 +2,7 @@ from jinja2 import Template
 import os
 import json
 
+
 PART_DATA = {
     "cosmoteer.thruster_small": {"command": -1, "cost": 500, "mass": 1.3, },
     "cosmoteer.thruster_small_2way": {"command": -2, "cost": 1000, "mass": 1.61, },
@@ -116,6 +117,7 @@ PART_DATA = {
     "cosmoteer.storage_4x4": {"command": 0, "cost": 4800, "mass": 16.0, },
 }
 
+
 SHIP_TYPES = {
     "Scouts": "Scout",
     "Patrolships": "Patrol Ship",
@@ -129,6 +131,8 @@ SHIP_TYPES = {
     "Tradeships": "Trade Ship",
     "Crewtransports": "Crew Transport"
 }
+
+
 class dataformat():
     
     def __init__(self):
@@ -239,6 +243,7 @@ class dataformat():
         self.data["mass"] = "{:.2f}".format(self.mass)
         self.data["crew"] = round(self.crew)
 
+
 def process_rules():
 
     with open(f'png/{file}', "r") as f:
@@ -262,7 +267,6 @@ def process_rules():
     return faction_short, type, ship_dict
         
 
-
 def decide_faction_name(faction_short):
     if faction_short == "Io":
         return "Great House Io"
@@ -271,13 +275,14 @@ def decide_faction_name(faction_short):
     else:
         return faction_short
     
+
 def get_door_cost(ship_data):
     cost = 100*len(ship_data["Doors"])
     return cost
 
+
 if __name__ == "__main__":
 
-    #fill these in before creating new ship documents
     extension = ".webp" #sometimes it's .png, make sure to check the wiki images
     faction_short = ""
     faction_long = ""
@@ -336,7 +341,5 @@ if __name__ == "__main__":
             ship.set_class(classification)
             ship.set_difficulty(difficulty)
 
-
             #write to template files
             ship.write_to_template(template_name)
-            
